@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using MyApp.Common.Data;
+using MyApp.Data.Implementations;
+using MyApp.Data.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,7 @@ builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("MyApp"));
 });
+builder.Services.AddScoped<IUsersRepository, UsersRepository>();
 
 var app = builder.Build();
 
